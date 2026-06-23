@@ -3,20 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Tirenify - Building world-class digital security infrastructure for Africa. A pitch by Daniel Adeleye.">
+    <meta name="description" content="Tirenify - Building Africa's trusted digital security platform. A pitch by Daniel Adeleye.">
     <meta name="author" content="Daniel Adeleye">
-    <meta property="og:title" content="Tirenify Pitch - Digital Security for Africa">
-    <meta property="og:description" content="Millions of African internet users lack access to affordable, locally-focused tools to protect their digital lives. Tirenify is changing that.">
+    <meta property="og:title" content="Tirenify Pitch - Building Africa's Trusted Digital Security Platform">
+    <meta property="og:description" content="Africa deserves world-class digital security. Tirenify is building the security infrastructure African internet users have never had access to.">
     <meta property="og:type" content="website">
-    <title>Tirenify Pitch | Digital Security for Africa</title>
+    <title>Tirenify Pitch | Building Africa's Trusted Digital Security Platform</title>
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
     
     <!-- Styles -->
     <link rel="stylesheet" href="styles.css">
@@ -24,13 +21,7 @@
 <body>
     <!-- Loading Screen -->
     <div id="loader" class="loader" role="status" aria-label="Loading">
-        <div class="loader-ring"></div>
-        <div class="loader-text-wrapper">
-            <span class="loader-text">This</span>
-            <span class="loader-text">is</span>
-            <span class="loader-text">my</span>
-            <span class="loader-text highlight">dream</span>
-        </div>
+        <div class="loader-text" id="loader-text"></div>
     </div>
 
     <!-- Navigation Bar -->
@@ -38,14 +29,29 @@
         <div class="navbar-container">
             <a href="#hero" class="navbar-logo">
                 <span class="logo-text">Tirenify</span>
-                <span class="logo-dot"></span>
             </a>
-            <div class="navbar-actions">
-                <a href="#resources" class="navbar-link">Resources</a>
-                <a href="mailto:daniel@tirenify.com" class="btn btn-primary btn-sm">
-                    <span>Get in Touch</span>
-                </a>
+            <div class="navbar-links" id="navbar-links">
+                <a href="#problem" class="navbar-link">Problem</a>
+                <a href="#product" class="navbar-link">Product</a>
+                <a href="#roadmap" class="navbar-link">Roadmap</a>
+                <a href="#founder" class="navbar-link">Founder</a>
+                <a href="#partnership" class="navbar-link">Partner</a>
             </div>
+            <a href="#cta" class="navbar-cta">Let's Talk →</a>
+            <button class="navbar-toggle" id="navbar-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <!-- Mobile Menu Overlay -->
+        <div class="navbar-overlay" id="navbar-overlay">
+            <a href="#problem" class="overlay-link">Problem</a>
+            <a href="#product" class="overlay-link">Product</a>
+            <a href="#roadmap" class="overlay-link">Roadmap</a>
+            <a href="#founder" class="overlay-link">Founder</a>
+            <a href="#partnership" class="overlay-link">Partner</a>
+            <a href="#cta" class="overlay-link">Let's Talk</a>
         </div>
     </nav>
 
@@ -55,110 +61,95 @@
         <!-- Hero Section -->
         <section id="hero" class="section hero-section">
             <div class="hero-background">
-                <div class="hero-gradient hero-gradient-1"></div>
-                <div class="hero-gradient hero-gradient-2"></div>
-                <div class="hero-gradient hero-gradient-3"></div>
-                <div class="hero-grid"></div>
-                <div class="hero-particles" id="particles"></div>
+                <div class="hero-ambient hero-ambient-1"></div>
+                <div class="hero-ambient hero-ambient-2"></div>
             </div>
             
             <div class="container">
-                <div class="hero-content">
-                    <div class="hero-badge">
-                        <span class="badge-dot"></span>
-                        <span>A Personal Pitch</span>
-                    </div>
-                    
-                    <h1 class="hero-title">
-                        Africa Deserves<br>
-                        <span class="hero-title-highlight">World-Class</span><br>
-                        Digital Security
-                    </h1>
-                    
-                    <p class="hero-description">
-                        Millions of African internet users lack access to affordable, 
-                        locally-focused tools to protect their digital lives. 
-                        <strong>Tirenify</strong> is changing that.
-                    </p>
-                    
-                    <div class="hero-actions">
-                        <a href="#why-this-pitch-exists" class="btn btn-primary btn-lg">
-                            <span>Explore the Vision</span>
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M5 12h14M12 5l7 7-7 7"/>
-                            </svg>
-                        </a>
-                        <a href="https://breachchecker-rho.vercel.app/" target="_blank" rel="noopener" class="btn btn-ghost btn-lg">
-                            <span>Try Breach Checker</span>
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
-                                <polyline points="15 3 21 3 21 9"/>
-                                <line x1="10" y1="14" x2="21" y2="3"/>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="hero-scroll">
-                <span>Scroll to explore</span>
-                <div class="scroll-indicator">
-                    <div class="scroll-mouse">
-                        <div class="scroll-wheel"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Why This Pitch Exists Section -->
-        <section id="why-this-pitch-exists" class="section discovery-section">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-tag">The Story</span>
-                    <h2 class="section-title">How I Found You,<br>And Why I'm Here</h2>
-                </div>
-                
-                <div class="discovery-grid">
-                    <div class="discovery-quote-card reveal">
-                        <div class="quote-decoration">"</div>
-                        <div class="quote-content">
-                            <p class="quote-text">
-                                Going through your pages (TikTok, YouTube and all) I thought to myself:
-                            </p>
-                            <blockquote class="quote-highlight">
-                                'The people, the students in the streets of the UK are lucky to have someone like you. 
-                                There's no way you're ever going to be going around asking people what their dreams are 
-                                here in Nigeria. And even if you somehow did, there's definitely no way you'd be in the 
-                                part of Nigeria I reside in.'
-                            </blockquote>
-                            <p class="quote-text">
-                                And that's why I decided I would be the one answering your questions without being asked.
-                            </p>
-                            <p class="quote-punchline">
-                                That's why I built this.
-                            </p>
+                <div class="hero-layout">
+                    <div class="hero-content">
+                        <div class="hero-eyebrow">
+                            <span class="eyebrow-dot"></span>
+                            PHASE 1 LIVE
                         </div>
-                    </div>
-                    
-                    <div class="discovery-note-card reveal">
-                        <div class="note-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
-                                <polyline points="14 2 14 8 20 8"/>
-                                <line x1="16" y1="13" x2="8" y2="13"/>
-                                <line x1="16" y1="17" x2="8" y2="17"/>
-                            </svg>
-                        </div>
-                        <p class="note-text">
-                            Your philosophy aligns with what I'm building. So I created this pitch to show you clearly 
-                            what Tirenify is, why it matters, and how we can partner to make it real.
+                        
+                        <h1 class="hero-title">
+                            Africa deserves<br>
+                            world-class<br>
+                            digital security.
+                        </h1>
+                        
+                        <p class="hero-description">
+                            Tirenify is building the security infrastructure
+                            African internet users have never had access to.
+                            Phase 1 is live. 78 users. No outside capital.
+                            We're looking for partners who see what we see.
                         </p>
-                        <a href="Tirenify_Why_This_Pitch_Exists.pdf" target="_blank" rel="noopener" class="btn btn-outline">
-                            <span>Read Why This Pitch Exists</span>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M7 17L17 7M17 7H7M17 7V17"/>
-                            </svg>
-                        </a>
+                        
+                        <div class="hero-cta-row">
+                            <a href="#product" class="btn btn-primary">
+                                See the Product →
+                            </a>
+                            <a href="#resources" class="btn btn-ghost">
+                                Read the Full Pitch
+                            </a>
+                        </div>
+                        
+                        <div class="hero-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">USERS TO DATE</span>
+                                <span class="stat-value">78</span>
+                            </div>
+                            <div class="stat-divider"></div>
+                            <div class="stat-item">
+                                <span class="stat-label">CAPITAL DEPLOYED</span>
+                                <span class="stat-value">£0</span>
+                            </div>
+                            <div class="stat-divider"></div>
+                            <div class="stat-item">
+                                <span class="stat-label">PHASES COMPLETE</span>
+                                <span class="stat-value">1 of 5</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="hero-panel">
+                        <div class="panel-header">
+                            <span class="panel-timestamp">2026-01-15 14:32:07 UTC</span>
+                            <span class="panel-status">
+                                <span class="status-dot"></span>
+                                SECURE SCAN
+                            </span>
+                        </div>
+                        <div class="panel-body">
+                            <div class="scan-result">
+                                <div class="result-email">
+                                    <span class="email-label">TARGET</span>
+                                    <span class="email-value">d•••••@gmail.com</span>
+                                </div>
+                                <div class="result-badge danger">
+                                    <span class="badge-count">3</span>
+                                    <span class="badge-text">BREACHES</span>
+                                </div>
+                            </div>
+                            <div class="breach-list">
+                                <div class="breach-row">
+                                    <span class="breach-source">LinkedIn</span>
+                                    <span class="breach-date">2021</span>
+                                    <span class="breach-type">Email, Name</span>
+                                </div>
+                                <div class="breach-row">
+                                    <span class="breach-source">Canva</span>
+                                    <span class="breach-date">2019</span>
+                                    <span class="breach-type">Email, Location</span>
+                                </div>
+                                <div class="breach-row">
+                                    <span class="breach-source">Adobe</span>
+                                    <span class="breach-date">2013</span>
+                                    <span class="breach-type">Email, Password</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -167,249 +158,183 @@
         <!-- Problem Section -->
         <section id="problem" class="section problem-section">
             <div class="container">
-                <div class="section-header">
-                    <span class="section-tag">The Challenge</span>
-                    <h2 class="section-title">The Problem No One<br>Is Addressing</h2>
-                </div>
+                <span class="section-label">THE CHALLENGE</span>
                 
-                <div class="problem-intro reveal">
-                    <p>
-                        African internet users face <strong>unique digital security challenges</strong> that 
-                        many in developed markets simply don't experience. The consequences of data breaches, 
-                        phishing attacks, SIM swaps, and identity theft are <strong>devastating</strong> — 
-                        and they affect millions daily.
-                    </p>
-                </div>
+                <h2 class="section-headline">
+                    The problem no one<br>is solving.
+                </h2>
+                
+                <blockquote class="section-quote">
+                    "Over 1 billion Africans are online.
+                    Zero affordable, locally-built digital security tools exist for them."
+                </blockquote>
                 
                 <div class="problem-grid">
-                    <div class="problem-card reveal" style="--delay: 0">
-                        <div class="card-glow"></div>
-                        <div class="problem-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                            </svg>
-                        </div>
-                        <h3 class="problem-title">No Local Solutions</h3>
-                        <p class="problem-desc">Existing security tools are expensive, not localized, and not designed for African realities.</p>
-                    </div>
-                    
-                    <div class="problem-card reveal" style="--delay: 1">
-                        <div class="card-glow"></div>
-                        <div class="problem-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                                <path d="M7 11V7a5 5 0 0110 0v4"/>
-                            </svg>
-                        </div>
-                        <h3 class="problem-title">Data Breaches</h3>
-                        <p class="problem-desc">Personal data exposed in breaches affects job seekers, students, and families across the continent.</p>
-                    </div>
-                    
-                    <div class="problem-card reveal" style="--delay: 2">
-                        <div class="card-glow"></div>
-                        <div class="problem-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"/>
-                                <line x1="2" y1="12" x2="22" y2="12"/>
-                                <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
-                            </svg>
-                        </div>
-                        <h3 class="problem-title">Identity Theft</h3>
-                        <p class="problem-desc">Stolen identities lead to financial loss, reputational damage, and emotional distress.</p>
-                    </div>
-                    
-                    <div class="problem-card reveal" style="--delay: 3">
-                        <div class="card-glow"></div>
-                        <div class="problem-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                                <path d="M12 8v4M12 16h.01"/>
-                            </svg>
-                        </div>
-                        <h3 class="problem-title">SIM Swaps</h3>
-                        <p class="problem-desc">Criminals exploit weak verification systems to hijack phone numbers and drain accounts.</p>
-                    </div>
-                </div>
-                
-                <div class="problem-statement reveal">
-                    <p>
-                        This isn't theoretical. This is <strong>real</strong>. Every day, 
-                        Africans go online without the protection they deserve. 
-                        <strong>We're building the solution.</strong>
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Solution Section -->
-        <section id="solution" class="section solution-section">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-tag section-tag-teal">Phase 1 — Live Now</span>
-                    <h2 class="section-title">The Breach Checker</h2>
-                </div>
-                
-                <div class="solution-grid">
-                    <div class="solution-info">
-                        <p class="solution-intro reveal">
-                            We didn't start with just a vision. We started by <strong>building</strong>. 
-                            Tirenify's first phase is <span class="highlight">live and working</span> — 
-                            users can instantly check if their email appears in known data breaches.
-                        </p>
-                        
-                        <div class="feature-list">
-                            <div class="feature-item reveal" style="--delay: 0">
-                                <div class="feature-check">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                        <polyline points="20 6 9 17 4 12"/>
-                                    </svg>
-                                </div>
-                                <span>Instant breach detection</span>
-                            </div>
-                            <div class="feature-item reveal" style="--delay: 1">
-                                <div class="feature-check">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                        <polyline points="20 6 9 17 4 12"/>
-                                    </svg>
-                                </div>
-                                <span>Free for everyone</span>
-                            </div>
-                            <div class="feature-item reveal" style="--delay: 2">
-                                <div class="feature-check">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                        <polyline points="20 6 9 17 4 12"/>
-                                    </svg>
-                                </div>
-                                <span>No signup required</span>
-                            </div>
-                            <div class="feature-item reveal" style="--delay: 3">
-                                <div class="feature-check">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                        <polyline points="20 6 9 17 4 12"/>
-                                    </svg>
-                                </div>
-                                <span>Privacy-first design</span>
-                            </div>
-                        </div>
-                        
-                        <a href="https://breachchecker-rho.vercel.app/" target="_blank" rel="noopener" class="btn btn-primary btn-lg reveal">
-                            <span>Try It Yourself</span>
+                    <div class="problem-card reveal">
+                        <div class="card-icon">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
-                                <polyline points="15 3 21 3 21 9"/>
-                                <line x1="10" y1="14" x2="21" y2="3"/>
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                <line x1="12" y1="8" x2="12" y2="12"/>
+                                <line x1="12" y1="16" x2="12.01" y2="16"/>
                             </svg>
-                        </a>
+                        </div>
+                        <h3 class="card-title">No Local Solutions</h3>
+                        <p class="card-body">Existing tools are expensive, not localized, and built for Western threats. African realities — BVN leaks, mobile money fraud, SIM swaps — are ignored entirely.</p>
                     </div>
                     
-                    <div class="solution-preview reveal">
-                        <div class="preview-window">
-                            <div class="preview-header">
-                                <div class="preview-dots">
-                                    <span></span><span></span><span></span>
-                                </div>
-                                <span class="preview-url">breachchecker.tirenify.com</span>
-                            </div>
-                            <div class="preview-body">
-                                <div class="preview-hero">
-                                    <div class="preview-shield">
-                                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                                        </svg>
-                                    </div>
-                                    <h4>Check Your Email</h4>
-                                    <p>See if your data has been exposed</p>
-                                    <div class="preview-input-group">
-                                        <input type="text" placeholder="your@email.com" disabled>
-                                        <button disabled>Check</button>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="problem-card reveal">
+                        <div class="card-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <ellipse cx="12" cy="5" rx="9" ry="3"/>
+                                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+                                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+                            </svg>
                         </div>
+                        <h3 class="card-title">Data Breaches</h3>
+                        <p class="card-body">When LinkedIn, Ticketmaster, or a local bank is breached, millions of African credentials are exposed. Most users never find out until the damage is done.</p>
+                    </div>
+                    
+                    <div class="problem-card reveal">
+                        <div class="card-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+                                <line x1="12" y1="18" x2="12.01" y2="18"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">SIM Swap Fraud</h3>
+                        <p class="card-body">Criminals exploit weak carrier verification to hijack numbers and drain accounts. It's an African-specific attack vector. No Western product is built to detect it.</p>
+                    </div>
+                    
+                    <div class="problem-card reveal">
+                        <div class="card-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12 6 12 12 16 14"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">The Cost of Waiting</h3>
+                        <p class="card-body">Every month without a solution is another month of stolen identities, lost savings, and eroded digital trust across the continent. This problem compounds.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Vision / Roadmap Section -->
-        <section id="vision" class="section vision-section">
+        <!-- Product Section -->
+        <section id="product" class="section product-section">
             <div class="container">
-                <div class="section-header">
-                    <span class="section-tag">The Journey</span>
-                    <h2 class="section-title">From Awareness to Trust</h2>
+                <span class="section-label">THE PRODUCT</span>
+                
+                <h2 class="section-headline">
+                    Phase 1 is live.
+                </h2>
+                
+                <div class="live-badge">
+                    <span class="live-dot"></span>
+                    LIVE NOW
                 </div>
                 
-                <div class="roadmap">
-                    <div class="roadmap-track">
-                        <div class="roadmap-line"></div>
-                        
-                        <div class="roadmap-items">
-                            <div class="roadmap-item reveal" style="--delay: 0">
-                                <div class="roadmap-marker current">
-                                    <span class="marker-dot"></span>
-                                    <span class="marker-pulse"></span>
-                                </div>
-                                <div class="roadmap-content">
-                                    <span class="phase-status">Live Now</span>
-                                    <h3>Phase 1</h3>
-                                    <p>Breach Awareness - Users check if their email is in known breaches.</p>
-                                </div>
+                <p class="product-description">
+                    The Tirenify Breach Checker lets any African internet user check
+                    whether their email appears in known data breaches.
+                    No signup. No data stored. Results in seconds.
+                </p>
+                
+                <a href="https://breachchecker-rho.vercel.app/" target="_blank" rel="noopener" class="checker-cta">
+                    <div class="checker-cta-inner">
+                        <div class="checker-label">● LIVE NOW</div>
+                        <h3>Try the Breach Checker</h3>
+                        <p>See if your email appears in known data breaches. No signup. Results in seconds.</p>
+                        <br>
+                        <div class="checker-button">
+                            Check Your Email →
+                        </div>
+                    </div>
+                </a>
+                
+                <div class="product-proof">
+                    <span class="proof-item">✓ Scans 10+ breach databases</span>
+                    <span class="proof-item">✓ No signup required</span>
+                    <span class="proof-item">✓ Built for African users</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Roadmap Section -->
+        <section id="roadmap" class="section roadmap-section">
+            <div class="container">
+                <span class="section-label">THE ROADMAP</span>
+                
+                <h2 class="section-headline">
+                    From awareness<br>to infrastructure.
+                </h2>
+                
+                <div class="roadmap-timeline">
+                    <div class="roadmap-node active">
+                        <div class="node-circle">1</div>
+                        <div class="node-content">
+                            <div class="node-header">
+                                <h3>Phase 1 — Breach Awareness</h3>
+                                <span class="node-status live">LIVE</span>
                             </div>
-                            
-                            <div class="roadmap-item reveal" style="--delay: 1">
-                                <div class="roadmap-marker">
-                                    <span class="marker-dot"></span>
-                                </div>
-                                <div class="roadmap-content">
-                                    <span class="phase-status">Next</span>
-                                    <h3>Phase 2</h3>
-                                    <p>Proactive Monitoring - Continuous alerts when new breaches occur.</p>
-                                </div>
+                            <span class="node-dates">Mar 2026 – Dec 2026</span>
+                            <p class="node-target">Target: 2,500 users</p>
+                            <p class="node-desc">Free breach checker. No signup. Proving demand.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="roadmap-connector"></div>
+                    
+                    <div class="roadmap-node">
+                        <div class="node-circle">2</div>
+                        <div class="node-content">
+                            <div class="node-header">
+                                <h3>Phase 2 — Real-Time Monitoring</h3>
+                                <span class="node-status next">NEXT — Jan 2027</span>
                             </div>
-                            
-                            <div class="roadmap-item reveal" style="--delay: 2">
-                                <div class="roadmap-marker">
-                                    <span class="marker-dot"></span>
-                                </div>
-                                <div class="roadmap-content">
-                                    <span class="phase-status">Future</span>
-                                    <h3>Phase 3</h3>
-                                    <p>Privacy Tools - Password management and encrypted communication.</p>
-                                </div>
+                            <p class="node-target">Target: 8,500 users · ₦425K MRR</p>
+                            <p class="node-desc">Real-time alerts. Dark web monitoring. SIM swap detection. First revenue.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="roadmap-connector"></div>
+                    
+                    <div class="roadmap-node">
+                        <div class="node-circle">3</div>
+                        <div class="node-content">
+                            <div class="node-header">
+                                <h3>Phase 3 — Data Removal & Family</h3>
+                                <span class="node-status">2028–2029</span>
                             </div>
-                            
-                            <div class="roadmap-item reveal" style="--delay: 3">
-                                <div class="roadmap-marker">
-                                    <span class="marker-dot"></span>
-                                </div>
-                                <div class="roadmap-content">
-                                    <span class="phase-status">Future</span>
-                                    <h3>Phase 4</h3>
-                                    <p>Account Protection - 2FA helpers and recovery services.</p>
-                                </div>
+                            <p class="node-target">Target: 20,000 users · ₦1M+ MRR</p>
+                            <p class="node-desc">Active data removal. Household coverage. Security audits.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="roadmap-connector"></div>
+                    
+                    <div class="roadmap-node">
+                        <div class="node-circle">4</div>
+                        <div class="node-content">
+                            <div class="node-header">
+                                <h3>Phase 4 — Enterprise & B2B</h3>
+                                <span class="node-status">2029–2030+</span>
                             </div>
-                            
-                            <div class="roadmap-item reveal" style="--delay: 4">
-                                <div class="roadmap-marker">
-                                    <span class="marker-dot"></span>
-                                </div>
-                                <div class="roadmap-content">
-                                    <span class="phase-status">Long-term</span>
-                                    <h3>Phase 5</h3>
-                                    <p>Enterprise Solutions - Security tools for African businesses.</p>
-                                </div>
+                            <p class="node-target">Target: 50+ companies · ₦3M+ MRR</p>
+                            <p class="node-desc">Enterprise dashboards. API access. Bank partnerships.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="roadmap-connector"></div>
+                    
+                    <div class="roadmap-node">
+                        <div class="node-circle">5</div>
+                        <div class="node-content">
+                            <div class="node-header">
+                                <h3>Phase 5+ — Infrastructure</h3>
+                                <span class="node-status">2030+</span>
                             </div>
-                            
-                            <div class="roadmap-item reveal" style="--delay: 5">
-                                <div class="roadmap-marker">
-                                    <span class="marker-dot"></span>
-                                </div>
-                                <div class="roadmap-content">
-                                    <span class="phase-status">Evolving</span>
-                                    <h3>Phase 6+</h3>
-                                    <p>User-Driven Evolution - Expanding as trust infrastructure grows.</p>
-                                </div>
-                            </div>
+                            <p class="node-target">Target: 1B+ addressable</p>
+                            <p class="node-desc">Hardware. Managed services. South Asia, Southeast Asia, Latin America.</p>
                         </div>
                     </div>
                 </div>
@@ -419,604 +344,293 @@
         <!-- Founder Section -->
         <section id="founder" class="section founder-section">
             <div class="container">
-                <div class="section-header">
-                    <span class="section-tag">The Founder</span>
-                    <h2 class="section-title">Meet Daniel</h2>
-                </div>
+                <span class="section-label">THE FOUNDER</span>
                 
-                <div class="founder-grid">
-                    <div class="founder-visual reveal">
-                        <div class="founder-image-wrapper">
-                            <div class="image-frame">
-                                <img src="me.jpg" alt="Daniel Adeleye" loading="lazy">
-                            </div>
-                            <div class="image-glow"></div>
-                            <div class="image-badge">
-                                <span>Founder</span>
-                            </div>
+                <div class="founder-layout">
+                    <div class="founder-photo">
+                        <img src="me.jpg" alt="Daniel Adeleye">
+                        <div class="photo-caption">
+                            <span class="caption-name">Daniel Adeleye</span>
+                            <span class="caption-title">Founder, Tirenify · Akure, Nigeria</span>
                         </div>
                     </div>
                     
-                    <div class="founder-info">
-                        <div class="founder-intro reveal">
-                            <p class="lead">
-                                I'm <strong>Daniel Adeleye</strong>, a student at the Federal University of 
-                                Technology, Akure (FUTA), studying Industrial Engineering.
-                            </p>
-                        </div>
+                    <div class="founder-content">
+                        <p class="founder-intro">
+                            I'm Daniel Adeleye, a student at the Federal University of Technology, Akure (FUTA), 
+                            studying Industrial Engineering.
+                        </p>
                         
-                        <div class="founder-story reveal">
-                            <p>
-                                I'm building Tirenify with essentially <strong>zero capital</strong>, 
-                                but what I lack in resources, I make up for in <strong>conviction</strong>.
-                            </p>
-                            <p>
-                                I believe Africa deserves world-class digital security infrastructure 
-                                built specifically for its realities. I'm not waiting for permission 
-                                or perfect conditions — I'm <strong>building now</strong>.
-                            </p>
-                            <p>
-                                My long-term vision is to make Tirenify <strong>synonymous with safety, 
-                                trust, and peace of mind</strong> across the African continent. Every 
-                                line of code I write is a step toward that future.
-                            </p>
-                        </div>
+                        <p class="founder-quote">
+                            I'm building Tirenify with essentially zero capital, but what I lack in resources, 
+                            I make up for in conviction.
+                        </p>
                         
-                        <div class="founder-social reveal">
-                            <a href="https://x.com/tirenify" target="_blank" rel="noopener" class="social-link">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                                </svg>
-                                <span>@tirenify</span>
-                                <span class="social-badge">Most active here</span>
-                            </a>
-                            <a href="https://wa.me/2349063626099" target="_blank" rel="noopener" class="social-link">
-                                <i class="fa-brands fa-whatsapp"></i>
-                                <span>WhatsApp</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Funding Reality Section -->
-        <section id="funding" class="section funding-section">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-tag">The Reality</span>
-                    <h2 class="section-title">Why I Need Your Help</h2>
-                </div>
-                
-                <div class="funding-content">
-                    <div class="funding-text reveal">
-                        <p class="lead">
-                            I've tried freelancing to fund Tirenify. It hasn't worked out.
+                        <p class="founder-body">
+                            I believe Africa deserves world-class digital security infrastructure built 
+                            specifically for its realities. I'm not waiting for permission or perfect conditions — 
+                            I'm building now.
                         </p>
-                        <p>
-                            The problem with bootstrapping a platform like this:
-                            it requires full-time focus and attention. Building while freelancing 
-                            means doing both halfway. Neither the platform nor the clients get your best.
-                            Progress slows to a crawl.
-                        </p>
-                        <p>
-                            The reality: I don't have money to fund this project. 
-                            I don't have a trust fund or wealthy family backing. 
-                            I have a working product, a clear vision, and conviction.
-                        </p>
-                        <p>
-                            That's not enough in this economy. You need capital.
-                        </p>
-                    </div>
-                    
-                    <div class="funding-quote reveal">
-                        <div class="quote-mark">"</div>
-                        <p>
-                            "Korede is ready to work. I'm ready to build. 
-                            But we need resources to move from Phase 1 to Phase 2."
+                        
+                        <p class="founder-closing">
+                            My long-term vision is to make Tirenify synonymous with safety, trust, and peace of 
+                            mind across the African continent. Every line of code I write is a step toward 
+                            that future.
                         </p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Constraints Section -->
-        <section id="constraints" class="section constraints-section">
+        <!-- The Ask Section -->
+        <section id="ask" class="section ask-section">
             <div class="container">
-                <div class="section-header">
-                    <span class="section-tag">The Bottlenecks</span>
-                    <h2 class="section-title">What's Limiting Me<br>Right Now</h2>
-                </div>
+                <span class="section-label">THE ASK</span>
                 
-                <div class="constraints-intro reveal">
-                    <p class="lead">
-                        Building world-class infrastructure with zero capital is possible... but slow. 
-                        Every limitation below adds months to the timeline.
-                    </p>
-                </div>
+                <h2 class="section-headline">
+                    What we're looking for.
+                </h2>
                 
-                <div class="constraints-grid">
-                    <div class="constraint-card reveal" style="--delay: 0">
-                        <div class="constraint-icon">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"/>
-                                <line x1="2" y1="12" x2="22" y2="12"/>
-                                <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
-                            </svg>
+                <p class="ask-intro">
+                    We're not looking for a savior. We're looking for partners who believe
+                    in what we're building and want to accelerate it.
+                </p>
+                
+                <div class="needs-list">
+                    <div class="need-item">
+                        <span class="need-number">01</span>
+                        <div class="need-content">
+                            <h3 class="need-title">BELIEF</h3>
+                            <p class="need-desc">Validation that this problem matters. That we're not chasing a ghost. The most important thing we need — and the hardest to buy.</p>
                         </div>
-                        <h3>Limited Internet</h3>
-                        <p>Data in Nigeria costs significantly more than developed markets. Can't run continuous campaigns or test at scale. Video streaming and large uploads are costly.</p>
                     </div>
                     
-                    <div class="constraint-card reveal" style="--delay: 1">
-                        <div class="constraint-icon">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <div class="need-item">
+                        <span class="need-number">02</span>
+                        <div class="need-content">
+                            <h3 class="need-title">MENTORSHIP</h3>
+                            <p class="need-desc">Guidance from people who've built before. Wisdom that compresses timelines. Help avoiding the mistakes that cost founders years.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="need-item">
+                        <span class="need-number">03</span>
+                        <div class="need-content">
+                            <h3 class="need-title">NETWORKS</h3>
+                            <p class="need-desc">Access to partnerships, users, advisors, and distribution we can't reach alone. Introductions that would otherwise take three years to earn.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="need-item">
+                        <span class="need-number">04</span>
+                        <div class="need-content">
+                            <h3 class="need-title">CAPITAL</h3>
+                            <p class="need-desc">Capital to hire Korede, fund user acquisition, and reach 2,500 users by December 2026. Capital is the least important thing on this list. But it's the most concrete thing we can ask for.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="comparison-table">
+                    <div class="table-header">
+                        <span class="col-header">WITHOUT CAPITAL</span>
+                        <span class="col-header">WITH FUNDING</span>
+                    </div>
+                    <div class="table-divider"></div>
+                    <div class="table-row">
+                        <span class="col-left">20+ hrs/week freelancing</span>
+                        <span class="col-right">100% focused on Tirenify</span>
+                    </div>
+                    <div class="table-row">
+                        <span class="col-left">Organic growth only</span>
+                        <span class="col-right">Paid acquisition begins immediately</span>
+                    </div>
+                    <div class="table-row">
+                        <span class="col-left">Phase 2 pushed to 2027+</span>
+                        <span class="col-right">Korede hired, Phase 2 accelerates</span>
+                    </div>
+                    <div class="table-row">
+                        <span class="col-left">~500 users in 12 months</span>
+                        <span class="col-right">2,500+ users in 6 months</span>
+                    </div>
+                    <div class="table-row">
+                        <span class="col-left">Revenue: ₦0</span>
+                        <span class="col-right">Revenue: ₦300K/month by December</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Partnership Section -->
+        <section id="partnership" class="section partnership-section">
+            <div class="container">
+                <span class="section-label">PARTNERSHIP</span>
+                
+                <h2 class="section-headline">
+                    How we can<br>work together.
+                </h2>
+                
+                <div class="partnership-grid">
+                    <div class="partnership-card">
+                        <div class="card-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <line x1="12" y1="1" x2="12" y2="23"/>
                                 <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
                             </svg>
                         </div>
-                        <h3>No Marketing Capital</h3>
-                        <p>Tirenify grows only through organic word-of-mouth. Can't run paid campaigns or strategic partnerships. User acquisition is limited by what I can share manually.</p>
+                        <h3>Investment</h3>
+                        <p>Capital to reach 2,500 users, hire Korede, and validate Phase 2 revenue. Term structure open to discussion.</p>
                     </div>
                     
-                    <div class="constraint-card reveal" style="--delay: 2">
-                        <div class="constraint-icon">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <div class="partnership-card">
+                        <div class="card-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                        </div>
+                        <h3>Mentorship</h3>
+                        <p>Time, experience, and perspective from someone who has built before. One conversation can save months.</p>
+                    </div>
+                    
+                    <div class="partnership-card">
+                        <div class="card-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
                                 <circle cx="9" cy="7" r="4"/>
                                 <path d="M23 21v-2a4 4 0 00-3-3.87"/>
                                 <path d="M16 3.13a4 4 0 010 7.75"/>
                             </svg>
                         </div>
-                        <h3>Building Solo</h3>
-                        <p>All product development, marketing, and strategy falls on one person. Can't build and market simultaneously. Ideas move to execution slowly.</p>
+                        <h3>Strategic Partnership</h3>
+                        <p>Banks, fintechs, telecoms, platforms. Distribution, integration, co-marketing. Africa's security problem is your users' problem too.</p>
                     </div>
                     
-                    <div class="constraint-card reveal" style="--delay: 3">
-                        <div class="constraint-icon">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <div class="partnership-card">
+                        <div class="card-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="16 18 22 12 16 6"/>
+                                <polyline points="8 6 2 12 8 18"/>
+                            </svg>
+                        </div>
+                        <h3>Technical Contribution</h3>
+                        <p>Engineers and designers who want to build something that matters. Full-time, part-time, or project-based.</p>
+                    </div>
+                    
+                    <div class="partnership-card">
+                        <div class="card-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
                                 <line x1="3" y1="9" x2="21" y2="9"/>
                                 <line x1="9" y1="21" x2="9" y2="9"/>
                             </svg>
                         </div>
-                        <h3>Free Infrastructure</h3>
-                        <p>Currently at tirenify.netlify.app. Using free hosting with limited features. No custom domain — looks amateur to potential users and limits professional appearance.</p>
-                    </div>
-                    
-                    <div class="constraint-card reveal" style="--delay: 4">
-                        <div class="constraint-icon">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <polygon points="12 2 2 7 12 12 22 7 12 2"/>
-                                <polyline points="2 17 12 22 22 17"/>
-                                <polyline points="2 12 12 17 22 12"/>
-                            </svg>
-                        </div>
-                        <h3>No Paid Tools</h3>
-                        <p>Using free Claude tier with limited tokens. Free tier of every tool. Can't invest in faster services. Development iteration is slow — every feature takes longer.</p>
+                        <h3>Accelerators & Programs</h3>
+                        <p>Early-stage programs with resources, networks, and expertise. We are looking for more than capital.</p>
                     </div>
                 </div>
                 
-                <div class="constraints-summary reveal">
-                    <p>
-                        None of these are insurmountable. But together, they create artificial constraints. 
-                        <strong>Capital removes these bottlenecks.</strong>
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Possibilities Section -->
-        <section id="possibilities" class="section possibilities-section">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-tag section-tag-teal">The Opportunity</span>
-                    <h2 class="section-title">What Capital Would Unlock</h2>
-                </div>
-                
-                <div class="possibilities-intro reveal">
-                    <p class="lead">
-                        Tirenify is ready to scale. The only missing ingredient is capital. 
-                        With it: continental security platform in 6 months. Without it: same destination, but 12+ months away.
-                    </p>
-                </div>
-                
-                <div class="possibilities-grid">
-                    <div class="possibility-card reveal" style="--delay: 0">
-                        <span class="possibility-number">01</span>
-                        <h3>Professional Domain + Branding</h3>
-                        <p>Custom domain (not .netlify.app), professional email, paid hosting with better performance, proper SSL and global CDN.</p>
-                        <div class="possibility-impact">
-                            <span class="impact-label">User Trust:</span>
-                            <span>"This is a real company, not a side project"</span>
-                        </div>
-                    </div>
-                    
-                    <div class="possibility-card reveal" style="--delay: 1">
-                        <span class="possibility-number">02</span>
-                        <h3>Faster User Acquisition</h3>
-                        <p>Paid ads on platforms where African users are, strategic partnerships with tech communities, user referral incentives, targeted outreach.</p>
-                        <div class="possibility-impact">
-                            <span class="impact-label">Growth:</span>
-                            <span>From organic-only to 100+ users per week</span>
-                        </div>
-                    </div>
-                    
-                    <div class="possibility-card reveal" style="--delay: 2">
-                        <span class="possibility-number">03</span>
-                        <h3>Paid Tools for Faster Iteration</h3>
-                        <p>Claude Pro or paid tier (10x more tokens), paid analytics platforms, professional monitoring, development tools that reduce friction.</p>
-                        <div class="possibility-impact">
-                            <span class="impact-label">Speed:</span>
-                            <span>Weeks of work become days</span>
-                        </div>
-                    </div>
-                    
-                    <div class="possibility-card reveal" style="--delay: 3">
-                        <span class="possibility-number">04</span>
-                        <h3>Hire Korede Full-Time</h3>
-                        <p>Korede is identified and technically ready. Currently can't hire (no salary to offer). With capital: immediately moves to full-time development.</p>
-                        <div class="possibility-impact">
-                            <span class="impact-label">Impact:</span>
-                            <span>Phase 2 development accelerates 10x</span>
-                        </div>
-                    </div>
-                    
-                    <div class="possibility-card reveal" style="--delay: 4">
-                        <span class="possibility-number">05</span>
-                        <h3>6-Month Runway to Scale</h3>
-                        <p>Time to build Phase 2 properly, validate with 1000+ active users, find product-market fit across African markets, plan Phase 3 and beyond.</p>
-                        <div class="possibility-impact">
-                            <span class="impact-label">Result:</span>
-                            <span>From MVP to validated, scaled platform</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="possibilities-summary reveal">
-                    <p>
-                        With capital: Phase 2 launches within 6 months.<br>
-                        Without capital: same destination, 12+ months away.<br>
-                        <strong>Digital security in Africa shouldn't wait.</strong>
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- The Ask Section -->
-        <section id="the-ask" class="section ask-section">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-tag">The Partnership</span>
-                    <h2 class="section-title">The Ask</h2>
-                </div>
-                
-                <div class="ask-content">
-                    <div class="ask-intro reveal">
-                        <p class="lead">
-                            We're looking for capital to unlock Tirenify's potential. 
-                            Not a specific number. Not a rigid structure.
-                        </p>
-                        <p>
-                            We're looking for someone who believes in what we're building 
-                            and wants to help us build it faster.
-                        </p>
-                    </div>
-                    
-                    <div class="ask-grid">
-                        <div class="ask-card reveal" style="--delay: 0">
-                            <div class="ask-card-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="12" cy="12" r="10"/>
-                                    <polyline points="12 6 12 12 16 14"/>
-                                </svg>
-                            </div>
-                            <h4>What We Need</h4>
-                            <p>Capital to remove infrastructure constraints, scale user acquisition, bring Korede on full-time, and accelerate Phase 2 development.</p>
-                        </div>
-                        
-                        <div class="ask-card reveal" style="--delay: 1">
-                            <div class="ask-card-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                                </svg>
-                            </div>
-                            <h4>Investment Structure</h4>
-                            <p>We're flexible. Your typical model is 5% equity. We're open to that. Or convertible notes. Or partnership structures. Whatever aligns with your approach.</p>
-                        </div>
-                        
-                        <div class="ask-card reveal" style="--delay: 2">
-                            <div class="ask-card-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
-                                    <circle cx="12" cy="7" r="4"/>
-                                </svg>
-                            </div>
-                            <h4>The Real Ask</h4>
-                            <p>Belief in what we're building, financial backing to prove that belief, mentorship from someone who's done this before, and connection to network if appropriate.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="ask-summary reveal">
-                        <p>
-                            Whether it's 5% or another structure, 
-                            the important part is alignment. If you believe in Tirenify, 
-                            let's talk about the right way to partner.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Team Section -->
-        <section id="team" class="section team-section">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-tag">The Team</span>
-                    <h2 class="section-title">Ready to Execute</h2>
-                </div>
-                
-                <div class="team-intro reveal">
-                    <p class="lead">
-                        Tirenify isn't waiting on talent. It's waiting on capital.
-                    </p>
-                </div>
-                
-                <div class="team-member reveal">
-                    <div class="member-card">
-                        <div class="member-avatar">
-                            <span>K</span>
-                        </div>
-                        <div class="member-details">
-                            <div class="member-header">
-                                <h3>Korede</h3>
-                                <span class="member-role">Backend Developer</span>
-                            </div>
-                            <p class="member-desc">
-                             Korede is a backend engineer I've identified and reached out to for Tirenify's infrastructure. He's aware of the project and I'll be bringing him on once the product is stable and funding is in place. He brings the technical expertise this role requires.
-                            </p>
-                            <div class="member-status">
-                                <span class="status-dot"></span>
-                                <span>Joining when funding is secured</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="team-message reveal">
-                    <p>
-                        When funding arrives, <strong>execution accelerates</strong>. 
-                        No recruiting. No onboarding. Phase 2 development begins day one.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Video Section -->
-        <section id="video" class="section video-section">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-tag">Proof of Concept</span>
-                    <h2 class="section-title">This Is Exactly What You Do</h2>
-                </div>
-                
-                <div class="video-intro reveal">
-                    <p class="lead">
-                        The video below isn't about my vision for Tirenify.
-                    </p>
-                    <p>
-                        It's about <strong>your</strong> philosophy for investing in founders. 
-                        In it, you explain exactly how you invest: take 5% equity, provide capital 
-                        to founders with vision, back them early when it matters most.
-                    </p>
-                    <p>
-                        That's what Tirenify needs right now. That's exactly what I'm asking for.
-                    </p>
-                </div>
-                
-                <div class="video-wrapper reveal">
-                    <div class="video-container">
-                        <video id="philosophy-video" controls playsinline poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1920 1080'%3E%3Crect fill='%230a0a0a' width='1920' height='1080'/%3E%3C/svg%3E">
-                            <source src="video.mp4#t=16.3" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                        <div class="video-overlay" id="video-overlay">
-                            <button class="play-button" id="play-btn" aria-label="Play video">
-                                <svg width="64" height="64" viewBox="0 0 24 24" fill="currentColor">
-                                    <polygon points="5 3 19 12 5 21 5 3"/>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                    <p class="video-caption">When you watch this, you're watching yourself describe the investment Tirenify is ready for.</p>
-                </div>
+                <blockquote class="partnership-quote">
+                    "What every partnership has in common: belief that Africa deserves
+                    world-class digital security infrastructure, and a long view of what that means."
+                </blockquote>
             </div>
         </section>
 
         <!-- Resources Section -->
         <section id="resources" class="section resources-section">
             <div class="container">
-                <div class="section-header">
-                    <span class="section-tag">The Evidence</span>
-                    <h2 class="section-title">Built on Planning,<br>Not Just Vision</h2>
-                </div>
+                <span class="section-label">DOCUMENTATION</span>
                 
-                <div class="resources-intro reveal">
-                    <p class="lead">
-                        This isn't speculation. This is <strong>planned</strong>. 
-                        We know what we're building and why. The numbers work.
-                    </p>
-                </div>
+                <h2 class="section-headline">
+                    The evidence is here.
+                </h2>
                 
                 <div class="resources-grid">
-                    <div class="resource-card reveal" style="--delay: 0">
+                    <div class="resource-card">
                         <div class="resource-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
                                 <polyline points="14 2 14 8 20 8"/>
                                 <line x1="16" y1="13" x2="8" y2="13"/>
                                 <line x1="16" y1="17" x2="8" y2="17"/>
-                                <polyline points="10 9 9 9 8 9"/>
-                            </svg>
-                        </div>
-                        <h3>Why This Pitch Exists</h3>
-                        <p>A short document explaining the reason behind this pitch and why it was created specifically for you.</p>
-                        <a href="Tirenify_Why_This_Pitch_Exists.pdf" target="_blank" rel="noopener" class="btn btn-outline">
-                            <span>Read the Pitch Brief</span>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
-                                <polyline points="7 10 12 15 17 10"/>
-                                <line x1="12" y1="15" x2="12" y2="3"/>
-                            </svg>
-                        </a>
-                    </div>
-
-                    <div class="resource-card reveal" style="--delay: 1">
-                        <div class="resource-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
-                                <polyline points="14 2 14 8 20 8"/>
-                                <line x1="16" y1="13" x2="8" y2="13"/>
-                                <line x1="16" y1="17" x2="8" y2="17"/>
-                                <polyline points="10 9 9 9 8 9"/>
                             </svg>
                         </div>
                         <h3>6-Month Financial Projection</h3>
-                        <p>Detailed financial planning showing the path to sustainability, unit economics, and resource allocation.</p>
-                        <a href="Tirenify_6Month_Financial_Projection_EXPANDED.pdf" target="_blank" rel="noopener" class="btn btn-outline">
-                            <span>View Projection</span>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
-                                <polyline points="7 10 12 15 17 10"/>
-                                <line x1="12" y1="15" x2="12" y2="3"/>
-                            </svg>
+                        <p>Capital requirements, budget breakdown, revenue model, and three scenarios.</p>
+                        <a href="actual/Tirenify_6Month_Financial_Projection.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open 6-Month Financial Projection PDF in a new tab" class="resource-download">
+                            View Document →
                         </a>
                     </div>
                     
-                    <div class="resource-card reveal" style="--delay: 2">
+                    <div class="resource-card">
                         <div class="resource-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
                             </svg>
                         </div>
-                        <h3>Detailed Product Roadmap</h3>
-                        <p>Comprehensive breakdown of each phase with timelines, resource requirements, and success metrics.</p>
-                        <a href="Tirenify_Product_Roadmap.pdf" target="_blank" rel="noopener" class="btn btn-outline">
-                            <span>View Roadmap</span>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
-                                <polyline points="7 10 12 15 17 10"/>
-                                <line x1="12" y1="15" x2="12" y2="3"/>
-                            </svg>
+                        <h3>Product Roadmap</h3>
+                        <p>Five-phase plan from breach awareness to enterprise infrastructure.</p>
+                        <a href="actual/Tirenify_Product_Roadmap.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open Product Roadmap PDF in a new tab" class="resource-download">
+                            View Document →
                         </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA Section -->
-        <section id="cta" class="section cta-section">
-            <div class="cta-background">
-                <div class="cta-gradient"></div>
-            </div>
-            <div class="container">
-                <div class="cta-content">
-                    <div class="cta-text reveal">
-                        <h2 class="cta-title">Building Something That Lasts</h2>
-                        <p class="cta-subtitle">What happens if we succeed?</p>
-                        
-                        <div class="cta-vision">
-                            <p>
-                                <strong>Millions of Africans</strong> with a trusted platform for digital security.<br>
-                                A company that <strong>solves real problems</strong> for real people.<br>
-                                A name that means <strong>safety</strong>.
-                            </p>
-                        </div>
-                        
-                        <p class="cta-ask">
-                            That's what I'm building. That's what I'm asking for help with.
-                        </p>
-                        
-                        <div class="cta-buttons">
-                            <a href="mailto:danieladeleye0807@gmail.com" class="btn btn-primary btn-lg">
-                                <span>Let's Partner</span>
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                                    <polyline points="22,6 12,13 2,6"/>
-                                </svg>
-                            </a>
-                            <a href="https://x.com/tirenify" target="_blank" rel="noopener" class="btn btn-secondary btn-lg">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                                </svg>
-                                <span>Connect on X</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Closing Section -->
-        <section id="closing" class="section closing-section">
-            <div class="container">
-                <div class="closing-content reveal">
-                    <h2 class="closing-title">Thank You</h2>
-                    
-                    <div class="closing-message">
-                        <p>
-                            Thank you for taking the time to view this.
-                        </p>
-                        <p>
-                            I genuinely appreciate the attention and effort you've invested 
-                            in understanding what I'm trying to build.
-                        </p>
-                        <p>
-                            Whether we partner or not, your willingness to listen to a young 
-                            founder's vision means something to me.
-                        </p>
-                        <p>
-                            If you have thoughts, questions, or just want to chat about 
-                            digital security in Africa, find me on Twitter/X. I'm always 
-                            building, always learning, and always excited to talk about this mission.
-                        </p>
-                        <p class="closing-signature">— Daniel</p>
                     </div>
                     
-                    <div class="closing-links">
-                        <a href="https://tirenify.netlify.app/" target="_blank" rel="noopener">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"/>
-                                <line x1="2" y1="12" x2="22" y2="12"/>
-                                <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
-                            </svg>
-                            <span>Tirenify</span>
-                        </a>
-                        <a href="https://x.com/tirenify" target="_blank" rel="noopener">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                            </svg>
-                            <span>@tirenify</span>
-                        </a>
-                        <a href="https://wa.me/2349063626099" target="_blank" rel="noopener">
-                            <i class="fa-brands fa-whatsapp"></i>
-                            <span>WhatsApp</span>
-                        </a>
-                        <a href="https://dan-lac.vercel.app/" target="_blank" rel="noopener">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <div class="resource-card">
+                        <div class="resource-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
                                 <circle cx="12" cy="7" r="4"/>
                             </svg>
-                            <span>Portfolio</span>
+                        </div>
+                        <h3>Founder Background & Vision</h3>
+                        <p>Full founder story, competitive advantages, and 10-year mission.</p>
+                        <a href="actual/Tirenify_Founder_Background_Vision.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open Founder Background & Vision PDF in a new tab" class="resource-download">
+                            View Document →
                         </a>
-                    </div>
-                    
-                    <div class="closing-footer">
-                        <p>&copy; 2026 Tirenify. Built with conviction.</p>
                     </div>
                 </div>
             </div>
         </section>
+
+        <!-- Closing CTA Section -->
+        <section id="cta" class="section cta-section">
+            <div class="container">
+                <h2 class="cta-headline">
+                    Building something<br>that lasts.
+                </h2>
+                
+                <p class="cta-body">
+                    Tirenify is being built regardless of outside support.
+                    But the right partners accelerate everything.
+                    
+                    If you believe in this mission — however that looks —
+                    I want to talk to you.
+                </p>
+                
+                <div class="cta-buttons">
+                    <a href="mailto:danieladeleye321@gmail.com" class="btn btn-primary">
+                        Let's Partner
+                    </a>
+                    <a href="https://x.com/tirenify" target="_blank" rel="noopener" class="btn btn-ghost">
+                        Follow the Journey
+                    </a>
+                </div>
+                
+                <div class="cta-contact">
+                    <a href="mailto:danieladeleye321@gmail.com?subject=Tirenify Investment & Partnership" class="cta-contact-link">Investment & Partnership</a>
+                    <a href="mailto:danieladeleye321@gmail.com?subject=Tirenify Quick Question" class="cta-contact-link">Quick Questions</a>
+                    <a href="https://wa.me/2349063626099" target="_blank" rel="noopener" class="cta-contact-link">WhatsApp</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <span class="footer-wordmark">Tirenify</span>
+                <span class="footer-copyright">© 2026 Tirenify. All rights reserved.</span>
+            </div>
+        </footer>
     </main>
 
     <!-- Scripts -->

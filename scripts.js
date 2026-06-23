@@ -1,6 +1,6 @@
 /**
- * Tirenify Pitch - Premium Interactive Experience
- * Features: Parallax, Particles, Scroll Animations, Video Controls
+ * Tirenify Pitch — Redesigned Interactive Experience
+ * Three-beat loader, scroll animations, mouse parallax, number counting
  */
 
 (function() {
@@ -11,12 +11,16 @@
     // ============================================
     
     const CONFIG = {
-        loaderDuration: 2000,
+        loaderPhrases: ['78 users.', 'Zero capital.', 'One mission.'],
+        loaderBeatDuration: 900,
+        loaderFadeDuration: 400,
         intersectionThreshold: 0.12,
         scrollThreshold: 50,
-        parallaxEnabled: true,
-        particleCount: 30,
-        videoAutoplayDelay: 500,
+        smoothScrollOffset: 80,
+        parallaxIntensity: 0.02,
+        panelParallaxIntensity: -0.015,
+        lerpFactor: 0.08,
+        numberCountDuration: 1200,
     };
 
     // ============================================
@@ -25,15 +29,18 @@
     
     const elements = {
         loader: null,
+        loaderText: null,
         mainContent: null,
         body: null,
         navbar: null,
+        navbarToggle: null,
+        navbarOverlay: null,
         revealElements: null,
-        video: null,
-        playBtn: null,
-        videoOverlay: null,
-        particles: null,
-        heroGradients: null,
+        heroSection: null,
+        heroAmbients: null,
+        heroPanel: null,
+        statValues: null,
+        roadmapLine: null,
     };
 
     // ============================================
@@ -41,7 +48,15 @@
     // ============================================
     
     let scrollY = 0;
-    let ticking = false;
+    let loaderComplete = false;
+    let mobileMenuOpen = false;
+    let mouseX = 0, mouseY = 0;
+    let currentParallaxX = 0, currentParallaxY = 0;
+    let targetParallaxX = 0, targetParallaxY = 0;
+    let panelParallaxX = 0, panelParallaxY = 0;
+    let targetPanelParallaxX = 0, targetPanelParallaxY = 0;
+    let parallaxEnabled = false;
+    let animationFrameId = null;
 
     // ============================================
     // INITIALIZATION
@@ -49,121 +64,77 @@
     
     function init() {
         cacheElements();
-        createParticles();
         handleLoader();
         setupEventListeners();
         setupScrollAnimations();
-        setupVideoControls();
         setupSmoothScroll();
-        
-        // Add loaded class after everything is ready
-        setTimeout(() => {
-            elements.body.classList.add('loaded');
-        }, 100);
+        setupParallax();
+        setupNumberCounting();
     }
 
     function cacheElements() {
         elements.loader = document.getElementById('loader');
+        elements.loaderText = document.getElementById('loader-text');
         elements.mainContent = document.getElementById('main-content');
         elements.body = document.body;
         elements.navbar = document.getElementById('navbar');
+        elements.navbarToggle = document.getElementById('navbar-toggle');
+        elements.navbarOverlay = document.getElementById('navbar-overlay');
         elements.revealElements = document.querySelectorAll('.reveal');
-        elements.video = document.getElementById('philosophy-video');
-        elements.playBtn = document.getElementById('play-btn');
-        elements.videoOverlay = document.getElementById('video-overlay');
-        elements.particles = document.getElementById('particles');
-        elements.heroGradients = document.querySelectorAll('.hero-gradient');
+        elements.heroSection = document.getElementById('hero');
+        elements.heroAmbients = document.querySelectorAll('.hero-ambient');
+        elements.heroPanel = document.querySelector('.hero-panel');
+        elements.statValues = document.querySelectorAll('.stat-value');
     }
 
     // ============================================
-    // PARTICLE SYSTEM
-    // ============================================
-    
-    function createParticles() {
-        if (!elements.particles) return;
-        
-        const container = elements.particles;
-        const count = CONFIG.particleCount;
-        
-        for (let i = 0; i < count; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            
-            // Random positioning
-            const x = Math.random() * 100;
-            const y = Math.random() * 100;
-            const size = Math.random() * 3 + 1;
-            const duration = Math.random() * 20 + 10;
-            const delay = Math.random() * 10;
-            const opacity = Math.random() * 0.5 + 0.1;
-            
-            particle.style.cssText = `
-                position: absolute;
-                left: ${x}%;
-                top: ${y}%;
-                width: ${size}px;
-                height: ${size}px;
-                background: ${Math.random() > 0.5 ? 'var(--accent-primary)' : 'var(--accent-secondary)'};
-                border-radius: 50%;
-                opacity: ${opacity};
-                animation: particleFloat ${duration}s ease-in-out ${delay}s infinite;
-                pointer-events: none;
-            `;
-            
-            container.appendChild(particle);
-        }
-        
-        // Add particle animation keyframes
-        if (!document.getElementById('particle-styles')) {
-            const style = document.createElement('style');
-            style.id = 'particle-styles';
-            style.textContent = `
-                @keyframes particleFloat {
-                    0%, 100% {
-                        transform: translate(0, 0) scale(1);
-                        opacity: var(--particle-opacity, 0.3);
-                    }
-                    25% {
-                        transform: translate(${Math.random() > 0.5 ? '' : '-'}20px, -30px) scale(1.2);
-                    }
-                    50% {
-                        transform: translate(${Math.random() > 0.5 ? '' : '-'}40px, 20px) scale(0.8);
-                        opacity: 0.1;
-                    }
-                    75% {
-                        transform: translate(${Math.random() > 0.5 ? '' : '-'}10px, -10px) scale(1.1);
-                    }
-                }
-            `;
-            document.head.appendChild(style);
-        }
-    }
-
-    // ============================================
-    // LOADER
+    // LOADER — Three-Beat Sequence
     // ============================================
     
     function handleLoader() {
-        setTimeout(() => {
-            if (elements.loader) {
-                elements.loader.classList.add('hidden');
-                
-                // Enable body scroll
-                elements.body.classList.remove('hidden');
-                
-                // Trigger initial animations
+        if (!elements.loader || !elements.loaderText) {
+            showContent();
+            return;
+        }
+
+        let phraseIndex = 0;
+
+        function showPhrase() {
+            if (phraseIndex >= CONFIG.loaderPhrases.length) {
                 setTimeout(() => {
-                    triggerInitialAnimations();
-                }, 400);
+                    elements.loaderText.style.opacity = '0';
+                    setTimeout(showContent, CONFIG.loaderFadeDuration);
+                }, CONFIG.loaderBeatDuration);
+                return;
             }
-        }, CONFIG.loaderDuration);
+
+            elements.loaderText.textContent = CONFIG.loaderPhrases[phraseIndex];
+            elements.loaderText.style.opacity = '1';
+
+            setTimeout(() => {
+                elements.loaderText.style.opacity = '0';
+            }, CONFIG.loaderBeatDuration - CONFIG.loaderFadeDuration);
+
+            phraseIndex++;
+            setTimeout(showPhrase, CONFIG.loaderBeatDuration);
+        }
+
+        setTimeout(showPhrase, 100);
     }
 
-    function triggerInitialAnimations() {
-        // Hero elements already have CSS animations
-        // This can trigger any additional JS animations if needed
-        const heroElements = document.querySelectorAll('.hero-section .reveal');
-        heroElements.forEach(el => el.classList.add('visible'));
+    function showContent() {
+        if (elements.loader) {
+            elements.loader.classList.add('hidden');
+        }
+        
+        elements.body.classList.remove('hidden');
+        elements.body.classList.add('loaded');
+        loaderComplete = true;
+
+        setTimeout(() => {
+            const heroReveals = document.querySelectorAll('.hero-section .reveal');
+            heroReveals.forEach(el => el.classList.add('visible'));
+        }, 200);
     }
 
     // ============================================
@@ -171,40 +142,28 @@
     // ============================================
     
     function setupEventListeners() {
-        // Scroll handling with requestAnimationFrame
         window.addEventListener('scroll', onScroll, { passive: true });
         
-        // Resize handling
-        window.addEventListener('resize', debounce(onResize, 250));
-        
-        // Navbar scroll effect
-        setupNavbarScroll();
+        if (elements.navbarToggle && elements.navbarOverlay) {
+            elements.navbarToggle.addEventListener('click', toggleMobileMenu);
+            
+            const overlayLinks = elements.navbarOverlay.querySelectorAll('.overlay-link');
+            overlayLinks.forEach(link => {
+                link.addEventListener('click', closeMobileMenu);
+            });
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && mobileMenuOpen) {
+                closeMobileMenu();
+            }
+        });
+
+        updateNavbar();
     }
 
     function onScroll() {
         scrollY = window.pageYOffset;
-        
-        if (!ticking) {
-            requestAnimationFrame(() => {
-                updateParallax();
-                updateNavbar();
-                ticking = false;
-            });
-            ticking = true;
-        }
-    }
-
-    function onResize() {i
-        // Recalculate any layout-dependent values
-    }
-
-    // ============================================
-    // NAVBAR SCROLL EFFECT
-    // ============================================
-    
-    function setupNavbarScroll() {
-        if (!elements.navbar) return;
-        
         updateNavbar();
     }
 
@@ -219,43 +178,34 @@
     }
 
     // ============================================
-    // PARALLAX EFFECTS
+    // MOBILE NAVIGATION
     // ============================================
     
-    function updateParallax() {
-        if (!CONFIG.parallaxEnabled) return;
+    function toggleMobileMenu() {
+        mobileMenuOpen = !mobileMenuOpen;
         
-        // Only apply on desktop
-        if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
-            return;
-        }
-        
-        // Hero gradients parallax
-        if (elements.heroGradients) {
-            elements.heroGradients.forEach((gradient, index) => {
-                const speed = 0.1 + (index * 0.05);
-                const yPos = scrollY * speed;
-                gradient.style.transform = `translateY(${yPos}px)`;
-            });
-        }
-        
-        // Hero grid parallax
-        const heroGrid = document.querySelector('.hero-grid');
-        if (heroGrid) {
-            heroGrid.style.transform = `translateY(${scrollY * 0.15}px)`;
-        }
-        
-        // Section background parallax
-        document.querySelectorAll('[data-parallax]').forEach(el => {
-            const speed = parseFloat(el.getAttribute('data-parallax')) || 0.1;
-            const rect = el.getBoundingClientRect();
+        if (mobileMenuOpen) {
+            elements.navbarOverlay.classList.add('active');
+            elements.body.classList.add('menu-open');
             
-            if (rect.top < window.innerHeight && rect.bottom > 0) {
-                const offset = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
-                const translateY = (offset - 0.5) * 100 * speed;
-                el.style.transform = `translateY(${translateY}px)`;
-            }
-        });
+            const spans = elements.navbarToggle.querySelectorAll('span');
+            spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+            spans[1].style.opacity = '0';
+            spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+        } else {
+            closeMobileMenu();
+        }
+    }
+
+    function closeMobileMenu() {
+        mobileMenuOpen = false;
+        elements.navbarOverlay.classList.remove('active');
+        elements.body.classList.remove('menu-open');
+        
+        const spans = elements.navbarToggle.querySelectorAll('span');
+        spans[0].style.transform = '';
+        spans[1].style.opacity = '';
+        spans[2].style.transform = '';
     }
 
     // ============================================
@@ -264,12 +214,10 @@
     
     function setupScrollAnimations() {
         if (!('IntersectionObserver' in window)) {
-            // Fallback: show all elements immediately
             elements.revealElements.forEach(el => el.classList.add('visible'));
             return;
         }
         
-        // Check for reduced motion preference
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         if (prefersReducedMotion) {
             elements.revealElements.forEach(el => {
@@ -288,7 +236,22 @@
             }
         );
         
-        elements.revealElements.forEach(el => {
+        elements.revealElements.forEach((el, index) => {
+            const parent = el.parentElement;
+            const siblings = parent.querySelectorAll('.reveal');
+            const siblingIndex = Array.from(siblings).indexOf(el);
+            
+            if (siblingIndex > 0) {
+                el.style.transitionDelay = `${siblingIndex * 80}ms`;
+            }
+            
+            revealObserver.observe(el);
+        });
+
+        // Also observe section labels and headlines
+        const sectionElements = document.querySelectorAll('.section-label, .section-headline, .section-quote');
+        sectionElements.forEach(el => {
+            el.classList.add('reveal');
             revealObserver.observe(el);
         });
     }
@@ -297,98 +260,129 @@
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                
-                // Optional: unobserve after reveal for one-time animation
-                // observer.unobserve(entry.target);
             }
         });
     }
 
     // ============================================
-    // VIDEO CONTROLS
+    // NUMBER COUNTING ANIMATION
     // ============================================
     
-    function setupVideoControls() {
-        if (!elements.video || !elements.playBtn) return;
+    function setupNumberCounting() {
+        if (!('IntersectionObserver' in window)) return;
         
-        prepareVideoPlayback();
-        
-        // Play button click
-        elements.playBtn.addEventListener('click', handleVideoPlay);
-        
-        // Video click to toggle play/pause
-        elements.video.addEventListener('click', toggleVideoPlay);
-        
-        // Video ended
-        elements.video.addEventListener('ended', handleVideoEnd);
-        
-        // Video errors
-        elements.video.addEventListener('error', handleVideoError);
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReducedMotion) return;
+
+        const numberObserver = new IntersectionObserver(
+            (entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const target = entry.target;
+                        const text = target.textContent;
+                        
+                        // Extract the numeric value
+                        const match = text.match(/^(\d+)/);
+                        if (match) {
+                            const targetValue = parseInt(match[1], 10);
+                            const suffix = text.replace(match[1], '');
+                            animateNumber(target, 0, targetValue, suffix, CONFIG.numberCountDuration);
+                        }
+                        
+                        numberObserver.unobserve(target);
+                    }
+                });
+            },
+            { threshold: 0.5 }
+        );
+
+        elements.statValues.forEach(stat => {
+            numberObserver.observe(stat);
+        });
     }
 
-    function prepareVideoPlayback() {
-        if (!elements.video) return;
+    function animateNumber(element, start, end, suffix, duration) {
+        const startTime = performance.now();
         
-        // Set start time and ensure audio is on
-        elements.video.currentTime = 15.7;
-        elements.video.muted = false;
-        elements.video.autoplay = true;
-        
-        elements.video.addEventListener('loadedmetadata', () => {
-            if (elements.video.currentTime < 15.7) {
-                elements.video.currentTime = 15.7;
+        function update(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            
+            // Ease out
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const current = Math.round(start + (end - start) * eased);
+            
+            element.textContent = current + suffix;
+            
+            if (progress < 1) {
+                requestAnimationFrame(update);
             }
-        });
-        
-        // Try autoplay
-        elements.video.play().then(() => {
-            hideVideoOverlay();
-        }).catch(error => {
-            console.warn('Video autoplay failed:', error);
-            // Show overlay for manual play
-            showVideoOverlay();
-        });
-    }
-
-    function handleVideoPlay() {
-        if (!elements.video) return;
-        
-        elements.video.play().then(() => {
-            hideVideoOverlay();
-        }).catch(error => {
-            console.warn('Video play failed:', error);
-        });
-    }
-
-    function toggleVideoPlay() {
-        if (!elements.video) return;
-        
-        if (elements.video.paused) {
-            elements.video.play();
-            hideVideoOverlay();
-        } else {
-            elements.video.pause();
         }
+        
+        requestAnimationFrame(update);
     }
 
-    function handleVideoEnd() {
-        showVideoOverlay();
-    }
-
-    function handleVideoError(e) {
-        console.warn('Video failed to load:', e);
-        showVideoOverlay();
-    }
-
-    function showVideoOverlay() {
-        if (elements.videoOverlay) {
-            elements.videoOverlay.classList.remove('hidden');
+    // ============================================
+    // MOUSE PARALLAX (Hero only)
+    // ============================================
+    
+    function setupParallax() {
+        if (!elements.heroSection) return;
+        
+        // Check for touch device
+        if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+            return; // Disable parallax on touch devices
         }
+
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReducedMotion) return;
+
+        parallaxEnabled = true;
+
+        elements.heroSection.addEventListener('mousemove', handleMouseMove);
+        
+        function parallaxLoop() {
+            if (parallaxEnabled) {
+                updateParallax();
+            }
+            animationFrameId = requestAnimationFrame(parallaxLoop);
+        }
+        
+        parallaxLoop();
     }
 
-    function hideVideoOverlay() {
-        if (elements.videoOverlay) {
-            elements.videoOverlay.classList.add('hidden');
+    function handleMouseMove(e) {
+        const rect = elements.heroSection.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        
+        // Calculate offset from center (-1 to 1)
+        const offsetX = (e.clientX - centerX) / (rect.width / 2);
+        const offsetY = (e.clientY - centerY) / (rect.height / 2);
+        
+        // Set target values
+        targetParallaxX = offsetX * CONFIG.parallaxIntensity * rect.width;
+        targetParallaxY = offsetY * CONFIG.parallaxIntensity * rect.height;
+        
+        targetPanelParallaxX = offsetX * CONFIG.panelParallaxIntensity * rect.width;
+        targetPanelParallaxY = offsetY * CONFIG.panelParallaxIntensity * rect.height;
+    }
+
+    function updateParallax() {
+        // Lerp current values toward target
+        currentParallaxX += (targetParallaxX - currentParallaxX) * CONFIG.lerpFactor;
+        currentParallaxY += (targetParallaxY - currentParallaxY) * CONFIG.lerpFactor;
+        panelParallaxX += (targetPanelParallaxX - panelParallaxX) * CONFIG.lerpFactor;
+        panelParallaxY += (targetPanelParallaxY - panelParallaxY) * CONFIG.lerpFactor;
+        
+        // Apply transforms to ambient backgrounds (move with mouse)
+        elements.heroAmbients.forEach(ambient => {
+            ambient.style.transform = `translate(${currentParallaxX}px, ${currentParallaxY}px)`;
+        });
+        
+        // Apply transform to hero panel (move opposite to mouse)
+        if (elements.heroPanel) {
+            elements.heroPanel.style.transform = `translate(${panelParallaxX}px, ${panelParallaxY}px)`;
         }
     }
 
@@ -407,7 +401,7 @@
                 
                 e.preventDefault();
                 
-                const headerOffset = 80;
+                const headerOffset = CONFIG.smoothScrollOffset;
                 const elementPosition = target.getBoundingClientRect().top;
                 const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
                 
@@ -420,91 +414,34 @@
     }
 
     // ============================================
-    // UTILITY FUNCTIONS
+    // ACTIVE NAV LINK HIGHLIGHTING
     // ============================================
     
-    function debounce(func, wait) {
-        let timeout;
-        return function executedFunction(...args) {
-            const later = () => {
-                clearTimeout(timeout);
-                func(...args);
-            };
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
+    function setupActiveNavLink() {
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.navbar-link');
+        
+        const observerOptions = {
+            root: null,
+            rootMargin: '-50% 0px -50% 0px',
+            threshold: 0
         };
-    }
-
-    function throttle(func, limit) {
-        let inThrottle;
-        return function(...args) {
-            if (!inThrottle) {
-                func.apply(this, args);
-                inThrottle = true;
-                setTimeout(() => inThrottle = false, limit);
-            }
-        };
-    }
-
-    function lerp(start, end, factor) {
-        return start + (end - start) * factor;
-    }
-
-    function clamp(value, min, max) {
-        return Math.min(Math.max(value, min), max);
-    }
-
-    function isInViewport(element, threshold = 0) {
-        const rect = element.getBoundingClientRect();
-        return (
-            rect.top >= 0 &&
-            rect.left >= 0 &&
-            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-        );
-    }
-
-    // ============================================
-    // ACCESSIBILITY
-    // ============================================
-    
-    function setupAccessibility() {
-        // Handle keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                // Close any open overlays if needed
-                if (elements.video && !elements.video.paused) {
-                    elements.video.pause();
-                    showVideoOverlay();
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${id}`) {
+                            link.classList.add('active');
+                        }
+                    });
                 }
-            }
-        });
-        
-        // Ensure all interactive elements are focusable
-        const interactiveElements = document.querySelectorAll('a, button, [tabindex]');
-        interactiveElements.forEach(el => {
-            if (!el.classList.contains('focus-visible-polyfill')) {
-                el.classList.add('focus-visible-polyfill');
-            }
-        });
-    }
-
-    // ============================================
-    // ANIMATION FALLBACKS
-    // ============================================
-    
-    function setupAnimationFallbacks() {
-        if (!('IntersectionObserver' in window)) {
-            elements.revealElements.forEach(el => el.classList.add('visible'));
-        }
-        
-        const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-        if (mediaQuery.matches) {
-            elements.revealElements.forEach(el => {
-                el.style.transition = 'none';
-                el.classList.add('visible');
             });
-        }
+        }, observerOptions);
+        
+        sections.forEach(section => observer.observe(section));
     }
 
     // ============================================
@@ -516,55 +453,43 @@
     } else {
         init();
     }
+
+    // Setup active nav links after init
+    document.addEventListener('DOMContentLoaded', setupActiveNavLink);
+
+    // ============================================
+    // PUBLIC API (for debugging)
+    // ============================================
     
-    // Run fallbacks immediately
-    setupAnimationFallbacks();
-    setupAccessibility();
+    window.TirenifyPitch = {
+        replayLoader: function() {
+            const loader = document.getElementById('loader');
+            if (loader) {
+                loader.classList.remove('hidden');
+                handleLoader();
+            }
+        },
+        
+        reveal: function(selector) {
+            const el = document.querySelector(selector);
+            if (el) {
+                el.classList.add('visible');
+            }
+        },
+        
+        getScrollProgress: function() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            return docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        },
+        
+        enableParallax: function() {
+            parallaxEnabled = true;
+        },
+        
+        disableParallax: function() {
+            parallaxEnabled = false;
+        }
+    };
 
 })();
-
-// ============================================
-// GLOBAL ERROR HANDLING
-// ============================================
-
-window.addEventListener('error', (event) => {
-    console.error('Global error:', event.error);
-});
-
-window.addEventListener('unhandledrejection', (event) => {
-    console.error('Unhandled promise rejection:', event.reason);
-});
-
-// ============================================
-// PUBLIC API (for debugging)
-// ============================================
-
-window.TirenifyPitch = {
-    replayLoader: function() {
-        const loader = document.getElementById('loader');
-        const mainContent = document.getElementById('main-content');
-        
-        if (loader && mainContent) {
-            loader.classList.remove('hidden');
-            mainContent.classList.add('hidden');
-            
-            setTimeout(() => {
-                loader.classList.add('hidden');
-                mainContent.classList.remove('hidden');
-            }, CONFIG.loaderDuration);
-        }
-    },
-    
-    reveal: function(selector) {
-        const el = document.querySelector(selector);
-        if (el) {
-            el.classList.add('visible');
-        }
-    },
-    
-    getScrollProgress: function() {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        return docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-    }
-};
