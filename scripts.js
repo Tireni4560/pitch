@@ -11,7 +11,7 @@
     // ============================================
     
     const CONFIG = {
-        loaderPhrases: ['78 users.', 'Zero capital.', 'One mission.'],
+        loaderPhrases: ['Zero capital.', 'One mission.'],
         loaderBeatDuration: 900,
         loaderFadeDuration: 400,
         intersectionThreshold: 0.12,
@@ -119,7 +119,7 @@
             setTimeout(showPhrase, CONFIG.loaderBeatDuration);
         }
 
-        setTimeout(showPhrase, 100);
+        setTimeout(showPhrase, 1000);
     }
 
     function showContent() {
